@@ -23,11 +23,14 @@ ADD https://github.com/postgis/postgis.git#${POSTGIS_VERSION} /usr/src/postgis
 ADD https://github.com/pgvector/pgvector.git#${PGVECTOR_VERSION} /usr/src/pgvector
 
 # `DOCKER_PG_LLVM_DEPS` names the clang and llvm versions that the base image's PostgreSQL was built with, which its JIT bitcode needs.
+# A git checkout gives all files arbitrary modification times, so make may regenerate the committed parsers, which needs bison and flex.
 RUN apk add --no-cache \
       $DOCKER_PG_LLVM_DEPS \
       autoconf \
       automake \
+      bison \
       file \
+      flex \
       g++ \
       gcc \
       gdal-dev \

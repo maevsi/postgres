@@ -1,20 +1,35 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "github>dargmuesli/renovate-config"
+  "customManagers": [
+    {
+      "customType": "regex",
+      "datasourceTemplate": "github-tags",
+      "managerFilePatterns": ["/^Dockerfile$/"],
+      "matchStrings": [
+        "#\\s+renovate:\\s+datasource=github-tags\\s+depName=(?<depName>\\S+)\\s+ENV\\s+\\S+_VERSION=(?<currentValue>\\S+)"
+      ]
+    }
   ],
+  "extends": ["github>dargmuesli/renovate-config"],
   "packageRules": [
     {
       "automerge": false,
-      "matchDatasources": [
-        "docker"
-      ],
-      "matchPackageNames": [
-        "postgres"
-      ],
-      "matchUpdateTypes": [
-        "major"
-      ]
+      "description": "A new PostgreSQL major needs a `pg_upgrade` of every deployed database.",
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["postgres"],
+      "matchUpdateTypes": ["major"]
+    },
+    {
+      "automerge": false,
+      "description": "A new PostGIS major renames its library, so existing databases fail until they are upgraded.",
+      "matchPackageNames": ["postgis/postgis"],
+      "matchUpdateTypes": ["major"]
+    },
+    {
+      "automerge": false,
+      "description": "pgvector is still on 0.x, where a minor may break as much as a major.",
+      "matchPackageNames": ["pgvector/pgvector"],
+      "matchUpdateTypes": ["major", "minor"]
     }
   ],
   "semanticCommitType": "fix"

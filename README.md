@@ -1,6 +1,6 @@
 # postgres
 
-Vibetype's PostgreSQL container image, which adds [PostGIS](https://postgis.net/) and [pgvector](https://github.com/pgvector/pgvector) to the official Debian based [`postgres`](https://hub.docker.com/_/postgres) image.
+Vibetype's PostgreSQL container image, which adds [PostGIS](https://postgis.net/) and [pgvector](https://github.com/pgvector/pgvector) to the official [`postgres`](https://hub.docker.com/_/postgres) Alpine image.
 It is published for `linux/amd64` and `linux/arm64` as `ghcr.io/maevsi/postgres`.
 
 ## Usage

@@ -30,10 +30,7 @@ fail() {
   exit 1
 }
 
-EXTENSIONS="$(query "SELECT string_agg(extname, ',' ORDER BY extname) FROM pg_extension")"
-echo "Extensions created on init: $EXTENSIONS"
-[ "$EXTENSIONS" = 'plpgsql,postgis,postgis_topology' ] || fail 'Expected PostGIS and its topology to be created on init'
-
+query 'CREATE EXTENSION postgis' >/dev/null || fail 'PostGIS is not installed'
 query 'CREATE EXTENSION vector' >/dev/null || fail 'pgvector is not installed'
 
 DISTANCE="$(query "SELECT round(ST_Distance(ST_Point(9.48, 51.31, 4326)::geography, ST_Point(11.58, 48.14, 4326)::geography) / 1000)")"

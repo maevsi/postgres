@@ -17,8 +17,8 @@ This project builds the PostgreSQL container image of `vibetype`, an event commu
   - a new PostgreSQL major needs a `pg_upgrade` of every deployed database
   - a new PostGIS major renames its library, so existing databases fail until they are upgraded; a minor only needs `SELECT postgis_extensions_upgrade()` at some point
   - pgvector is still on 0.x, where a minor may break as much as a major
-- A new database gets `postgis` and `postgis_topology` from `docker-entrypoint-initdb.d`, as `sqitch` migrations expect PostGIS to exist
-  - pgvector is only installed, as the services that use it create it in their own migrations, which also reach existing databases
+- Both extensions are only installed, unlike in `postgis/postgis`, whose init script creates PostGIS
+  - The services that use them create them in their own migrations, `sqitch` for PostGIS and `reccoom` for pgvector, which also reach existing databases, while an init script only runs for a new data directory
 
 ## Release
 

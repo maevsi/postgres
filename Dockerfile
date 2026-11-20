@@ -77,4 +77,3 @@ RUN apk add --no-cache \
       sfcgal
 
 COPY --from=build /srv/extensions/usr/local /usr/local
-COPY ./docker-entrypoint-initdb.d/ /docker-entrypoint-initdb.d/

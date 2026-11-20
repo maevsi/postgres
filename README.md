@@ -6,8 +6,7 @@ It is published for `linux/amd64` and `linux/arm64` as `ghcr.io/maevsi/postgres`
 ## Usage
 
 The image is configured like the official `postgres` image.
-A new database starts with the `postgis` and `postgis_topology` extensions, like with `postgis/postgis`.
-pgvector is installed but not created, so a database that needs it runs `CREATE EXTENSION vector`.
+Both extensions are installed but not created, so a database that needs one runs `CREATE EXTENSION postgis` or `CREATE EXTENSION vector`, ideally in its migrations.
 
 ## Development
 

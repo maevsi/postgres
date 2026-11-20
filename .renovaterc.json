@@ -1,0 +1,30 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "customManagers": [
+    {
+      "customType": "regex",
+      "datasourceTemplate": "github-tags",
+      "managerFilePatterns": [
+        "/^Dockerfile$/"
+      ],
+      "matchStrings": [
+        "#\\s+renovate:\\s+datasource=github-tags\\s+depName=(?<depName>\\S+)\\s+ENV\\s+\\S+_VERSION=(?<currentValue>\\S+)"
+      ]
+    }
+  ],
+  "extends": [
+    "github>dargmuesli/renovate-config"
+  ],
+  "packageRules": [
+    {
+      "allowedVersions": "<19",
+      "matchDatasources": [
+        "docker"
+      ],
+      "matchPackageNames": [
+        "postgres"
+      ]
+    }
+  ],
+  "semanticCommitType": "fix"
+}

@@ -1,12 +1,12 @@
 # syntax=docker/dockerfile:1
 
 # PostGIS is compiled here instead of using `postgis/postgis`, which publishes no arm64 image.
-# The build follows https://github.com/postgis/docker-postgis/blob/master/18-3.7/alpine/Dockerfile, without its regression tests.
+# The build follows https://github.com/postgis/docker-postgis/blob/master/19-3.7/alpine/Dockerfile, without its regression tests.
 
 ########################
 # Provide the base.
 
-FROM postgres:18.7-alpine3.24@sha256:0115267ab5a509022df9319c77be365cef335adb71556c75f60f5360ee247e71 AS base
+FROM postgres:19.0-alpine3.24@sha256:cac45fb483caee3668946088a1c0532db89d5285c28dbfeac889b4068296e06f AS base
 
 
 ########################
